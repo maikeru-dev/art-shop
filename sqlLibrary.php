@@ -17,15 +17,53 @@ function fetchAllArt($mysqli) { // : ArtItem[]
 
   return $artItems;
 }
+// I realise how horrible this function is, but I am out of time to fix it.
+function formatRow($tag,$bold,) : string {
+  //https://www.php.net/manual/en/function.func-get-args.php
+  $str = "";
+  $numargs = func_num_args();
+  if ($numargs-2 == 0) { // return nothing if no args passed.
+    return "";
+  }
+
+  $arg_list = func_get_args();
+  for ($i = 2; $i < $numargs; $i++){ // take current argument, wrap it in tag.
+    $str = $str . tagWrap($arg_list[$i],$bold, $tag);
+  }
+
+  return $str;
+}
+
+
+function tagWrap($val,) {
+  $str = $val;
+  $numargs = func_num_args();
+  if ($numargs-1 == 0) { // return nothing if no args passed.
+    return "";
+  }
+
+  $arg_list = func_get_args();
+  for ($i = 1; $i < $numargs; $i++){ // take current argument, wrap it in tag.
+    if ($arg_list[$i]) {
+
+    $str = "<{$arg_list[$i]}>$str</{$arg_list[$i]}>";
+    }
+  }
+  return $str;
+
+}
+function wrap($str, $char) {
+    return $char . $str . $char;
+}
 
 class ArtItem {
-  private int id;
-  private string artName;
-  private string doc; 
-  private float width;
-  private float height;
-  private float price;
-  private string desc;
+  private int $id;
+  private string $artName;
+  private string $doc;
+  private float $width;
+  private float $height;
+  private float $price;
+  private string $desc;
 
   public function getDesc() : string {
     return $this->desc;
@@ -48,7 +86,7 @@ class ArtItem {
   public function getId() : int {
     return $this->id;
   }
-  public __construct ($row) {
+  public function __construct ($row) {
     $this->id = $row['id'];
     $this->artName = $row['name'];
     $this->doc = $row['date_of_completion'];
@@ -58,8 +96,8 @@ class ArtItem {
     $this->desc = $row['description'];
   }
 
-
-
-
+  public function generateTableRow() : string {
+    return "";
+  }
 }
 ?>
