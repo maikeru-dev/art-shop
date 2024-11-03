@@ -11,3 +11,8 @@ however, for animations, and website navigation, JS is necessary.
 the website will use php first over html, because the database driven website is dynamic.
 
 this has benefits of templating, where certain html blocks can be reused from php files.
+
+# python
+
+this segment is used to drive the picture cropping segment,
+could do mipmapping as well, maybe?
