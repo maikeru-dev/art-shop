@@ -8,9 +8,7 @@ INSERT INTO art_items (name, date_of_completion, width, height, price, descripti
 ('Composition with Red, Blue and Yellow', 1930, 59.50, 59.50, 210000000.00, 'Piet Mondrian''s abstract painting with simple geometric forms in primary colors.'),
 ('The Raft of the Medusa', 1819, 491.00, 716.00, 120000000.00, 'Théodore Géricault''s large-scale work depicting survivors of a shipwreck in a dramatic rescue scene.'),
 ('Las Meninas', 1656, 318.00, 276.00, 400000000.00, 'Diego Velázquez''s complex and dynamic portrayal of the Spanish royal family and their attendants.'),
-('Bal du moulin de la Galette', 1876, 131.00, 175.00, 78000000.00, 'Pierre-Auguste Renoir''s lively depiction of a Parisian dance hall filled with joyful figures.');
-
-INSERT INTO art_items (name, date_of_completion, width, height, price, description) VALUES
+('Bal du moulin de la Galette', 1876, 131.00, 175.00, 78000000.00, 'Pierre-Auguste Renoir''s lively depiction of a Parisian dance hall filled with joyful figures.'),
 ('Mona Lisa', 1503, 77.00, 53.00, 860000000.00, 'A portrait of a woman with an enigmatic smile, painted by Leonardo da Vinci.'),
 ('The Starry Night', 1889, 92.00, 73.00, 110000000.00, 'Vincent van Gogh''s swirling night sky, capturing a dreamy view over Saint-Rémy-de-Provence.'),
 ('The Persistence of Memory', 1931, 24.00, 33.00, 60000000.00, 'Salvador Dalí''s iconic surrealist painting featuring melting clocks.'),
