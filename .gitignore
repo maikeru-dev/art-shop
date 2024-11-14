@@ -1,3 +1,9 @@
+# local python env
 /imgManipulation
+
 /imgs/*.jpg
 /imgs/*.png
+
+
+package-lock.json
+/node_modules
