@@ -6,9 +6,11 @@ include_once 'sqlConfig_local.php';
 include_once 'sqlLibrary.php';
 
 
-echo `<div id="header"><p>This is the main file.</p></div>`;
+echo '<div id="header"><p>This is the main file.</p></div>';
 ?>
-<p> hello world!</p>
+    <div class="card" style="width: 18rem">
+      <img src="./assets/imgs/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg">
+    </div>
   </body>
 </html>
 

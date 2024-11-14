@@ -1,5 +1,6 @@
 <?php
-namespace Src\System;
+
+namespace Src\Api;
 // heavily inspired by 
 // <https://developer.okta.com/blog/2019/03/08/simple-rest-api-php>
 class DatabaseConnector {
@@ -14,7 +15,7 @@ class DatabaseConnector {
     $artTable = 'art_items';
     $ordersTable = 'orders';
     
-    self::$dbConnection = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+    self::$dbConnection = new \mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
     
     if (self::$dbConnection->connect_error){
       throw new Throwable("Connection failed! " . $mysqli->connect_error);
