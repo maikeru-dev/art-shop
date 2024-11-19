@@ -24,7 +24,7 @@ abstract class Controller {
       break;
     } // This is lazy.
     
-    // PHP does not crash when parameters_length < arguments_length (user defined only)
+    // PHP does not crash when parameters_length < arguments_length (user defined definitions only, does not apply to php base defs)
     $response = $response($this->query);
     header($response['status_code_header']);
     if ($response['body']) {
@@ -38,10 +38,46 @@ abstract class Controller {
   abstract protected function putResponse(...$params);
   abstract protected function deleteResponse(...$params);
 
+
+  protected function fetchPHPInput(){
+    // Take input from request body, then decode into assoc array
+    return (array) json_decode(file_get_contents('php://input', TRUE));
+  }
+
+  protected function createdResponse() {
+    $response['statusCodeHeader'] = 'HTTP/1.1 201 Created';
+    $response['body'] = null;
+    return $response;
+  }
+  protected function successResponse() {
+    $response['statusCodeHeader'] = 'HTTP/1.1 200 OK';
+    $response['body'] = null;
+    return $response;
+  }
+  protected function successResponse($body) {
+    $response = $this->successResponse();
+    $response['body'] = $body;
+    return $response;
+  }
   protected function notFoundResponse() {
-      $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
+      $response['statusCodeHeader'] = 'HTTP/1.1 404 Not Found';
       $response['body'] = null;
       return $response
+  }
+  protected function adaptGetResponse($rows) {
+    return json_encode($rows, JSON_PRETTY_PRINT);
+  }
+  protected function unprocessableEntityResponse(){
+    $response['statusCodeHeader'] = 'HTTP/1.1 422 Unprocessable Entity';
+    $response['body'] = '{"error": "Invalid input"}';
+    return $response;
+  }
+  protected function validateAny($arr, $REQUIRED_KEYS) {
+    foreach($REQUIRED_KEYS as $value):
+      if (!isset($arr[$value])):
+        return false;
+
+    return true;
   }
   
 }
