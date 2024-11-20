@@ -24,7 +24,7 @@ class DatabaseConnector {
 
   public static function getConn() {
     if (!isset(self::$dbConnection)) {
-      self::$dbConnection = new DatabaseConnector();
+      new DatabaseConnector();
     }
     return self::$dbConnection;
   }
