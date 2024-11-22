@@ -1,6 +1,11 @@
-<?php 
+<?php
 require 'src/api/DatabaseConnector.php';
-use \Src\Api\DatabaseConnector;
+require 'src/utilities/Util.php';
+require 'src/api/controllers/ArtController.php';
+
+use Src\Api\Controllers\ArtController;
+use Src\Api\DatabaseConnector;
+
 $dbConn = DatabaseConnector::getConn();
 // heavily inspired by <https://developer.okta.com/blog/2019/03/08/simple-rest-api-php>
 
@@ -15,19 +20,25 @@ $uri = explode('/', $uri);
 // Check Uri
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
+$controller = null;
+$id = $uri[3];
+
+
 
 switch ($uri[2]) {
-case "art":
-  echo "art found!";
-  break;
-case "order":
-  echo "order found!";
-  break;
-case "img":
-  echo "img found!";
-  break;
-default:
-  header("HTTP/1.1 404 Not Found");
-  die();
+  case "art":
+    $controller = new ArtController($dbConn, $requestMethod, isset($uri[3]) ? ["id" => $id] : []);
+    break;
+  case "order":
+    echo "order found!";
+    break;
+  case "img":
+    echo "img found!";
+    break;
+  default:
+    header("HTTP/1.1 404 Not Found");
+    die();
 }
+
+$controller->processRequest();
 die();

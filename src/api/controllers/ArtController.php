@@ -1,18 +1,39 @@
 <?php
-require 'src/api/controllers/Controller.php';
+
 namespace Src\Api\Controllers;
 
-class ArtController extends Controller {
+require 'src/api/gateways/ArtGateway.php';
+require 'src/api/controllers/Controller.php';
+
+use \Src\Api\TableGateways\ArtGateway;
+
+class ArtController extends Controller
+{
   private $artGateway;
 
-  public function __construct($db, $requestMethod, $query) {
+  public function __construct($db, $requestMethod, $query)
+  {
     $this->db = $db;
     $this->requestMethod = $requestMethod;
     $this->query = $query;
 
-    $artGateway = new ArtGateway($db);
+    $this->artGateway = new ArtGateway($db);
   }
 
+  /**
+   * # dbKeys
+   *
+   * This method is responsible for making the validateAny function
+   * in the abstract class Controller work. Used for validation of $input.
+   *
+   * @return the list of columns for the Art Table
+   * */
+  public function dbKeys()
+  {
+    // This is the only way I know of ensuring that this variable is instantiated.
+    // At least with a good error message.
+    return ['name', 'date_of_completion', 'width', 'height', 'price', 'description'];
+  }
   /**
    * # Get Art
    *
@@ -25,16 +46,16 @@ class ArtController extends Controller {
    * @param id (optional)
    * @return response ["header", "body"] | 404 on key failure
    */
-  protected function getResponse(...$params) {
+  protected function getResponse(...$params)
+  {
     $size = sizeof($params);
     $response = $this->notFoundResponse();
 
-    if ($size == 1): // id present
-      return $this->successResponse($this->adaptGetResponse($this->artGateway->getId($params["id"])));
-    
-    if ($size == 0): // get all
-      return $this->successResponse($this->adaptGetResponse($this->artGateway->getAll()))
-    
+    if ($size == 1 && isset($params["id"])) // id present
+      return $this->successResponse($this->adaptGetResponse($this->artGateway->find($params["id"])));
+
+    if ($size == 0) // get all
+      return $this->successResponse($this->adaptGetResponse($this->artGateway->findAll()));
 
     return $response;
   }
@@ -46,10 +67,11 @@ class ArtController extends Controller {
    * @version 1.0
    * @return response ["header", "body"]
    */
-  protected function postResponse(...$params) {
+  protected function postResponse(...$params)
+  {
     $input = $this->fetchPHPInput();
 
-    if (!validateArt($input))
+    if (!parent::validateAny($input))
       return $this->unprocessableEntityResponse();
 
     $this->artGateway->insert($input);
@@ -70,12 +92,13 @@ class ArtController extends Controller {
    * @version 1.0
    * @param id (optional)
    */
-  protected function putResponse(...$params) {
+  protected function putResponse(...$params)
+  {
     $size = sizeof($params);
 
-    if ($size == 0):
+    if ($size == 0)
       return $this->notFoundResponse();
-    if ($size > 1):
+    if ($size > 1)
       return $this->unprocessableEntityResponse();
 
     $input = $this->fetchPHPInput();
@@ -98,25 +121,19 @@ class ArtController extends Controller {
    * @version 1.0
    * @param id (optional)
    */
-  protected function deleteResponse(...$params) {
+  protected function deleteResponse(...$params)
+  {
     $size = sizeof($params);
 
-    if ($size == 0):
+    if ($size == 0)
       return $this->notFoundResponse();
-    if ($size > 1):
+    if ($size > 1)
       return $this->unprocessableEntityResponse();
 
     $input = $this->fetchPHPInput();
 
-    $this->artGateway->delete($id, $input); // TODO: EXPECT ERRORS
+    $this->artGateway->delete($params["id"], $input); // TODO: EXPECT ERRORS
 
     return $this->successResponse();
   }
-  
-
-  protected function validateArt($arr){
-    $REQUIRED_KEYS = ['name', 'date_of_completion', 'width', 'height', 'price', 'description'];
-    return $this->validateAny($arr, $REQUIRED_KEYS);
-  }
-
-} 
+}

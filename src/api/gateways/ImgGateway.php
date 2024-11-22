@@ -3,18 +3,22 @@
 namespace Src\Api\TableGateways;
 
 
-class ImgGateway {
+class ImgGateway extends Gateway
+{
   private $db = null;
 
-  public function __construct($db) {
+  public function __construct($db)
+  {
     $this->db = $db;
   }
 
-  public function findAll() {
+  public function findAll()
+  {
     // TODO: Implement
   }
 
-  public function find($id) {
+  public function find($id)
+  {
     // TODO: Implement
 
   }
