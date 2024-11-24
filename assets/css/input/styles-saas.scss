@@ -12,6 +12,7 @@
 @import "../../bootstrap/scss/mixins";
 @import "../../bootstrap/scss/utilities";
 @import "../../bootstrap/scss/utilities/api";
+@import "../../bootstrap/scss/mixins/_table-variants.scss";
 
 // Import specific components
 @import "../../bootstrap/scss/root";
@@ -21,6 +22,11 @@
 @import "../../bootstrap/scss/containers";
 @import "../../bootstrap/scss/grid";
 @import "../../bootstrap/scss/helpers";
+@import "../../bootstrap/scss/alert";
+@import "../../bootstrap/scss/_tables.scss";
+@import "../../bootstrap/scss/_buttons.scss";
+@import "../../bootstrap/scss/_modal.scss";
+@import "../../bootstrap/scss/_forms.scss";
 
 // Component imports
 @import "../../bootstrap/scss/card"; // Card component
