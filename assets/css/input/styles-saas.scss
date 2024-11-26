@@ -27,6 +27,34 @@
 @import "../../bootstrap/scss/_buttons.scss";
 @import "../../bootstrap/scss/_modal.scss";
 @import "../../bootstrap/scss/_forms.scss";
+@import "../../bootstrap/scss/_utilities.scss";
 
 // Component imports
 @import "../../bootstrap/scss/card"; // Card component
+
+.hover-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+#shoppingCart.hover-zoom {
+  &:hover {
+    transition: all 100ms ease-in;
+    transform: scale(1.2);
+  }
+}
+.hover-zoom {
+  transition: all 200ms ease-out;
+
+  &:hover {
+    // https://stackoverflow.com/questions/57518130/css-ease-in-out-scale
+    transition: all 100ms ease-in;
+    transform: scale(1.01);
+  }
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+.hover-shadow:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}

@@ -40,11 +40,15 @@ abstract class Gateway
     $keys = array_keys($input);
     $values = array_values($input);
 
-    $rawStatment[1] = '(' . implode($keys) . ')';
-    $rawStatment[3] = $this->parseInputForInsert($input);
+    $rawStatment[1] = '(' . implode(", ", $keys) . ')';
+    $rawStatment[3] = '(' . $this->parseInputForInsert($input) . ')';
 
-    $stmt = $db->prepare(implode($rawStatment));
-    $stmt->bind_param($types, ...$values);
+    try {
+      $stmt = $db->prepare(implode($rawStatment));
+      $stmt->bind_param($types, ...$values);
+    } catch (\Exception $e) {
+      return ['value' => null, 'error' => implode($rawStatment)];
+    }
 
     if (!$stmt->execute()) {
       return ['value' => null, 'error' => $stmt->error];
@@ -122,7 +126,7 @@ abstract class Gateway
     $cols = $this->tableColumns();
 
     foreach (array_keys($input) as $key) {
-      $output += $cols[$key];
+      $output .= $cols[$key];
     }
 
     return $output;
@@ -130,13 +134,7 @@ abstract class Gateway
 
   protected function parseInputForInsert($input)
   {
-    $output = "";
-
-    foreach ($input as $whatever) {
-      $output .= "?, ";
-    }
-
-    return trim(', ', $output);
+    return str_repeat("?, ", count($input) - 1) . "?";
   }
 
   /**

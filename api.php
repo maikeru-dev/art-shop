@@ -2,8 +2,10 @@
 require 'src/api/DatabaseConnector.php';
 require 'src/utilities/Util.php';
 require 'src/api/controllers/ArtController.php';
+require 'src/api/controllers/OrderController.php';
 
 use Src\Api\Controllers\ArtController;
+use Src\Api\Controllers\OrderController;
 use Src\Api\DatabaseConnector;
 
 $dbConn = DatabaseConnector::getConn();
@@ -30,7 +32,7 @@ switch ($uri[2]) {
     $controller = new ArtController($dbConn, $requestMethod, isset($uri[3]) ? ["id" => $id] : []);
     break;
   case "order":
-    echo "order found!";
+    $controller = new OrderController($dbConn, $requestMethod, isset($uri[3]) ? ["id" => $id] : []);
     break;
   case "img":
     echo "img found!";

@@ -1,27 +1,34 @@
 <?php
+
 namespace Src\Api\TableGateways;
 
-require 'src/api/gateways/Gateway.php';
+require_once 'src/api/gateways/Gateway.php';
+
 use \Src\Api\TableGateways\Gateway;
 
-class ArtGateway extends Gateway {
+class ArtGateway extends Gateway
+{
 
-  public function tableName() {
+  public function tableName()
+  {
     return "art_items";
   }
 
-  public function tableColumns() {
+  public function tableColumns()
+  {
     return [
       'name' => 's',
-      'date_of_completion' => 'i',
+      'date_of_completion' => 's',
       'width' => 'd',
       'height' => 'd',
       'price' => 'd',
-      'description' => 's'
+      'description' => 's',
+      'img' => 's'
     ];
   }
 
-  public function __construct($db) {
+  public function __construct($db)
+  {
     $this->db = $db;
   }
 }

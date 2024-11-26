@@ -8946,4 +8946,29 @@ textarea.form-control-lg {
   }
 }
 
+.hover-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+#shoppingCart.hover-zoom:hover {
+  transition: all 100ms ease-in;
+  transform: scale(1.2);
+}
+
+.hover-zoom {
+  transition: all 200ms ease-out;
+}
+.hover-zoom:hover {
+  transition: all 100ms ease-in;
+  transform: scale(1.01);
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -55,21 +55,29 @@ abstract class Controller
     return (array) json_decode(file_get_contents('php://input', TRUE));
   }
 
+  protected function serverErrorResponse($error)
+  {
+    $response['statusCodeHeader'] = 'HTTP/1.1 500 Internal Server Error';
+    $response['body'] = "{ \"error\" : \"Internal Server Error: $error\", \"value\" : null }";
+    return $response;
+  }
+
   protected function createdResponse()
   {
     $response['statusCodeHeader'] = 'HTTP/1.1 201 Created';
-    $response['body'] = null;
+    $response['body'] = "{ \"error\" : null, \"value\" : null }";
     return $response;
   }
+
   protected function successResponse()
   {
     $args = func_get_args();
     if (sizeof($args) === 0) {
-      $response['body'] = null;
+      $response['body'] =  "{ \"error\" : null, \"value\" : null }";
     } else if (sizeof($args) === 1) {
       $response['body'] = $args[0];
     } else {
-      return $this->unprocessableEntityResponse();
+      return $this->unprocessableEntityResponse("Bad arg count on successResponse");
     }
 
     $response['statusCodeHeader'] = 'HTTP/1.1 200 OK';
@@ -83,7 +91,7 @@ abstract class Controller
   protected function notFoundResponse()
   {
     $response['statusCodeHeader'] = 'HTTP/1.1 404 Not Found';
-    $response['body'] = null;
+    $response['body'] = "{ \"error\" : \"Not Found\", \"value\" : null }";
     return $response;
   }
   protected function processSQLResult($objPair)
@@ -98,10 +106,10 @@ abstract class Controller
   {
     return json_encode($rows, JSON_PRETTY_PRINT);
   }
-  protected function unprocessableEntityResponse()
+  protected function unprocessableEntityResponse($error)
   {
     $response['statusCodeHeader'] = 'HTTP/1.1 422 Unprocessable Entity';
-    $response['body'] = '{"error": "Invalid input"}';
+    $response['body'] = "{ \"error\" : \"Invalid Input: $error\", \"value\" : null }";
     return $response;
   }
 

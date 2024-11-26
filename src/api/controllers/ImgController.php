@@ -1,7 +1,10 @@
 <?php
 require 'src/api/controllers/Controller.php';
+require 'src/api/gateways/ImgGateway.php';
 
 namespace Src\Api\Controllers;
+
+use \Src\Api\TableGateways\ImgGateway;
 
 class ImgController extends Controller
 {

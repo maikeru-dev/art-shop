@@ -2,8 +2,8 @@
 
 namespace Src\Api\Controllers;
 
-require 'src/api/gateways/ArtGateway.php';
-require 'src/api/controllers/Controller.php';
+require_once 'src/api/gateways/ArtGateway.php';
+require_once 'src/api/controllers/Controller.php';
 
 use \Src\Api\TableGateways\ArtGateway;
 
@@ -32,7 +32,7 @@ class ArtController extends Controller
   {
     // This is the only way I know of ensuring that this variable is instantiated.
     // At least with a good error message.
-    return ['name', 'date_of_completion', 'width', 'height', 'price', 'description'];
+    return ['name', 'date_of_completion', 'width', 'height', 'price', 'description', 'img']; // img is required here.
   }
   /**
    * # Get Art
@@ -72,7 +72,7 @@ class ArtController extends Controller
     $input = $this->fetchPHPInput();
 
     if (!parent::validateAny($input))
-      return $this->unprocessableEntityResponse();
+      return $this->unprocessableEntityResponse("Bad POST input, got: [" . implode(", ", array_keys($input)) . "]");
 
     $this->artGateway->insert($input);
 
@@ -99,7 +99,7 @@ class ArtController extends Controller
     if ($size == 0)
       return $this->notFoundResponse();
     if ($size > 1)
-      return $this->unprocessableEntityResponse();
+      return $this->unprocessableEntityResponse("Too Many Route Inputs On Put");
 
     $input = $this->fetchPHPInput();
 
@@ -128,7 +128,7 @@ class ArtController extends Controller
     if ($size == 0)
       return $this->notFoundResponse();
     if ($size > 1)
-      return $this->unprocessableEntityResponse();
+      return $this->unprocessableEntityResponse("Too Many Route Inputs On Delete");
 
     $input = $this->fetchPHPInput();
 
