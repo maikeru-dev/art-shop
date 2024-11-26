@@ -1,4 +1,5 @@
-<?php include_once "../../utilities/AJAXUtil.html"; ?>
+<?php include_once "src/utilities/AJAXUtil.html"; ?>
+
 <script>
   var loggedIn = <?php if (isset($_SESSION['auth']) && $_SESSION['auth'])
                     echo "true";

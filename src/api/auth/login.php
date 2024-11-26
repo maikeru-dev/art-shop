@@ -1,7 +1,7 @@
 <?php
 // src/api/auth/login.php
 
-require '../../utilities/Util.php';
+require_once 'src/utilities/Util.php';
 
 if (!session_start()) {
   error_log("Session failed to start!");
