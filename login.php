@@ -35,6 +35,6 @@ if (password_verify($password, $PASS_HASH)) {
   echo "{ \"error\" : null, \"value\" : null }";
   http_response_code(200);
 } else {
-  echo "{ \"error\": \"Failed! $password\", \"value\" : null }";
+  echo "{ \"error\": \"Bad passowrd.\", \"value\" : null }";
   http_response_code(401);
 }

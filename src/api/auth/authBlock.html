@@ -1,17 +1,40 @@
-<div class="container">
-  <div class="container d-inline">
-    <label id="passwordLabel" style="display: none" for="passwordAuth"
-      >Password:</label
-    >
-    <input style="display: none" id="passwordAuth" type="password" /><br />
-    <button
-      class="btn btn-outline-primary"
-      style="display: none"
-      id="loginButton"
-      type="button"
-    >
-      Login
-    </button>
+<div
+  style="height: 55vh"
+  id="authBlock"
+  class="container d-flex justify-content-center align-items-center"
+>
+  <div id="loginBlock" class="container-xs border">
+    <h4 style="padding: 2rem 0 0 2rem">Login</h4>
+    <div style="padding-top: 0.5rem !important" class="p-5">
+      <div style="padding-left: 2rem" class="row">
+        <div class="col container">
+          <label id="passwordLabel" for="passwordAuth">Password:</label>
+          <input class="" id="passwordAuth" type="password" />
+        </div>
+
+        <div class="col d-flex justify-content-start align-items-end">
+          <button
+            class="btn btn-secondary mw-5 mh-5"
+            style="max-height: 58%"
+            id="passwordToggle"
+          >
+            u
+          </button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <button
+          class="btn btn-outline-primary mx-auto mw-25"
+          style="max-width: 20%"
+          id="loginButton"
+          type="button"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="controlBlock" style="display: none" class="container">
     <button
       class="btn btn-outline-danger"
       style="display: none"

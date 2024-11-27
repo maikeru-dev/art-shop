@@ -9,8 +9,10 @@
                           echo $_SESSION['auth_timestamp'];
                         else echo 0; ?>;
   var loginButton = document.getElementById("loginButton");
-  var passwordLabel = document.getElementById("passwordLabel");
+  var loginBlock = document.getElementById("loginBlock");
+  var controlBlock = document.getElementById("controlBlock");
   var passwordAuth = document.getElementById("passwordAuth");
+  var passwordToggle = document.getElementById("passwordToggle");
   var logoutButton = document.getElementById("logoutButton");
   var addRowButton = document.getElementById("addRowButton");
   var seeOrdersButton = document.getElementById("seeOrdersButton");
@@ -24,6 +26,7 @@
   var dateInput = document.getElementById("form-date");
   var fileInput = document.getElementById("form-file");
 
+
   const TABLE_ART = 0;
   const TABLE_ORDER = 1;
   var showTable = TABLE_ART;
@@ -31,6 +34,18 @@
   if (!loginButton || !passwordAuth) {
     console.log("authBlock is missing?!");
   }
+
+  function togglePasswordVisiblity(event) {
+    // wish this could be hold.
+    const type = passwordAuth.getAttribute('type') === 'password' ? 'text' : 'password';
+    const sight = passwordToggle.innerText === "u" ? "o" : "u";
+    passwordToggle.innerHTML = sight;
+    passwordAuth.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+
+  }
+
+  passwordToggle.addEventListener("click", togglePasswordVisiblity);
 
   (function() { //https://getbootstrap.com/docs/4.0/components/forms/
     'use strict';
@@ -119,22 +134,29 @@
     loginOK(null);
   }
 
+  function controlGroupStyle(value) {
+    controlBlock.style = value;
+  }
+
   function loginGroupStyle(value) {
-    loginButton.style = value;
-    passwordAuth.style = value;
-    passwordLabel.style = value;
+    loginBlock.style = value;
   }
 
   function hideLogin(boolVal) {
     // I am doing it like this because I do not have enough time to figure out how css works
     if (boolVal == false) {
+      document.getElementById("authBlock").style.height = "55vh";
       loginGroupStyle("display:block");
+      controlGroupStyle("display:none");
       logoutButton.style = "display:none";
       addRowButton.style = "display:none";
       seeOrdersButton.style = "display:none";
       seeArtButton.style = "display:none";
     } else {
+
+      document.getElementById("authBlock").style.height = "auto";
       loginGroupStyle("display:none");
+      controlGroupStyle("display:inline");
       logoutButton.style = "display:inline";
       if (showTable == TABLE_ART) {
         seeOrdersButton.style = "display:inline";
@@ -150,14 +172,11 @@
 
 
   function loginBAD(response) {
-    // TODO: IMPLEMENT
+    alert("Bad password, sorry for poor UX!");
   }
 
   function loginOK(response) {
     loginGroupStyle("display:none");
-    if (response !== null) {
-      alert("Logged in! Welcome.");
-    }
 
     // Now fetch your bloody table.
     var xhttp = AJAXFetchObject(function(response) {
@@ -202,9 +221,8 @@
   }
 
   function login() {
-    var xhttp = AJAXFetchObject(loginOK, (response) => {
-      console.log(response);
-    });
+    var xhttp = AJAXFetchObject(loginOK,
+      loginBAD);
 
     // TODO: ADD TIMESTAMP TO PREVENT CACHING!
     // NOTE: It doesn't get anymore insecure than this lol
