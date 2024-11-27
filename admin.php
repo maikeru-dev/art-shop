@@ -35,7 +35,7 @@ include_once 'src/api/auth/authBlock.html';
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a valid date. Format is DD/MM/YYYY.
+              Please enter a valid date. Format is YYYY/MM/DD.
             </div>
           </div>
           <div class="form-group">
@@ -81,7 +81,7 @@ include_once 'src/api/auth/authBlock.html';
           </div>
           <div class="form-group">
             <label for="form-file" class="form-label">Image upload</label>
-            <input class="form-control" type="file" id="form-file">
+            <input class="form-control" type="file" id="form-file" required>
             <div class="invalid-feedback">
               Please provide a valid image file.
             </div>

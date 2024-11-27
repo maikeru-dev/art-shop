@@ -1,16 +1,11 @@
 # login
 
 make login pretty
-
-# update index.php
-
-Need pagination
+needs password stripped from response
 
 # lock api to cookie only
 
-# move to devweb
-
-# upload to git
+# change width and column to use bigger decimals
 
 # set limits on input in modals
 
