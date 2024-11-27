@@ -197,7 +197,7 @@
       console.log(response);
     });
 
-    xhttp.open("POST", window.location.origin + "/src/api/auth/logout.php");
+    xhttp.open("POST", window.location.origin + "/logout.php");
     xhttp.send();
   }
 
@@ -208,7 +208,7 @@
 
     // TODO: ADD TIMESTAMP TO PREVENT CACHING!
     // NOTE: It doesn't get anymore insecure than this lol
-    xhttp.open("POST", window.location.origin + "/src/api/auth/login.php");
+    xhttp.open("POST", window.location.origin + "/login.php");
     xhttp.setRequestHeader(
       "Authorization",
       "Basic " + window.btoa(passwordAuth.value),

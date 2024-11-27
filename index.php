@@ -1,4 +1,4 @@
-<?php include_once 'header.php';  // This has the inital body and html tags. 
+<?php include_once 'src/utilities/header.php';  // This has the inital body and html tags. 
 ?>
 </div>
 <div id="gallery" class="container text-center">

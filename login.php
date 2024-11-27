@@ -1,13 +1,13 @@
 <?php
 // src/api/auth/login.php
 
-require_once __DIR__ . '../../../utilities/Util.php';
+require_once 'src/utilities/Util.php';
 
 if (!session_start()) {
   error_log("Session failed to start!");
 }
 
-require './logoutAuto.php';
+require_once 'src/api/auth/logoutAuto.php'; // I can't remember why I put this here.
 
 if ($cleared) {
   http_response_code(200);

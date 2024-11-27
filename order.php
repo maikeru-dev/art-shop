@@ -1,4 +1,4 @@
-<?php include_once './header.php';
+<?php include_once 'src/utilities/header.php';
 include_once "./src/utilities/AJAXUtil.html";
 include_once "./src/utilities/basketUtil.html"
 ?>
