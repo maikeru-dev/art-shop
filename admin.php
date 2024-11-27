@@ -20,12 +20,12 @@ include_once 'src/api/auth/authBlock.html';
         <form id="addToRowForm" class="needs-validation" novalidate>
           <div class="form-group">
             <label for="form-name">Name of painting</label>
-            <input type="text" pattern="^(?:\b\w+\b[\s]*){1,}$" class="form-control formInput" id="form-name" placeholder="Enter name" required>
+            <input type="text" maxlength="30" pattern="^(?:\b\w+\b[\s]*){1,}$" class="form-control formInput" id="form-name" placeholder="Enter name" required>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a name for the art.
+              Please enter a name for the art. Max length is 30.
             </div>
           </div>
           <div class="form-group">
@@ -40,43 +40,43 @@ include_once 'src/api/auth/authBlock.html';
           </div>
           <div class="form-group">
             <label for="form-width">Width</label>
-            <input type="text" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-width" placeholder="Enter width" required>
+            <input type="text" maxlength="15" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-width" placeholder="Enter width" required>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a width value in mm. Must be a number.
+              Please enter a width value in mm. Must be a number, precision is 15.
             </div>
           </div>
           <div class="form-group">
             <label for="form-height">Height</label>
-            <input type="text" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-height" placeholder="Enter height" required>
+            <input type="text" maxlength="15" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-height" placeholder="Enter height" required>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a height value in mm. Must be a number.
+              Please enter a height value in mm. Must be a number, precision is 15.
 
             </div>
           </div>
           <div class="form-group">
             <label for="form-price">Price</label>
-            <input type="text" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-price" placeholder="Enter price" required>
+            <input type="text" maxlength="15" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" class="form-control formInput" id="form-price" placeholder="Enter price" required>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a price. Must be a number.
+              Please enter a price. Must be a number, precision is 15.
             </div>
           </div>
           <div class="form-group">
             <label for="form-desc">Description</label>
-            <textarea class="form-control formInput" pattern="^(?:\b\w+\b[\s]*){10,}$" style="resize: none" id="form-desc" rows="3" required></textarea>
+            <textarea class="form-control formInput" maxlength="460" pattern="^(?:\b\w+\b[\s]*){10,}$" style="resize: none" id="form-desc" rows="3" required></textarea>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please write a short description of the art.
+              Please write a short description of the art. Max 460 characters.
             </div>
           </div>
           <div class="form-group">
