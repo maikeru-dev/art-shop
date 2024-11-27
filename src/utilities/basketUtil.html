@@ -141,7 +141,7 @@
     __img.style = "margin: 0px auto;";
     __row.classList.add("row", "mb-2", "d-flex");
     __colImg.classList.add("col-sm-6");
-    __colMain.classList.add("col-sm-5", "d-flex", "flex-wrap");
+    __colMain.classList.add("col-sm-4", "d-flex", "flex-wrap");
 
     __innerRowTop.classList.add("row", "d-flex", "justify-content-end");
     __innerRowBot.classList.add("row", "d-flex", "justify-content-start");
@@ -150,8 +150,8 @@
     __h6Price.classList.add("mb-auto");
     __button.classList.add(
       "btn",
-      "w-50",
-      "h-50",
+      "mw-50",
+      "mh-50",
       "btn-danger",
       "checkoutDeleteBtn",
     );
@@ -197,7 +197,7 @@
         price = __h6Price.cloneNode(false),
         button = __button.cloneNode(false);
 
-      if (obj.img == null) {
+      if (obj.img == null || obj.img == null) {
         img.src =
           "./assets/imgs/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg";
       } else {

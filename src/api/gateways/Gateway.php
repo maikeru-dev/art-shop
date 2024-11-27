@@ -49,7 +49,6 @@ abstract class Gateway
     } catch (\Exception $e) {
       return ['value' => null, 'error' => implode($rawStatment)];
     }
-
     if (!$stmt->execute()) {
       return ['value' => null, 'error' => $stmt->error];
     }
