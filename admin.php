@@ -30,12 +30,12 @@ include_once 'src/api/auth/authBlock.html';
           </div>
           <div class="form-group">
             <label for="form-date">Date of completion</label>
-            <input type="datetime" class="form-control formInput" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\d{2}$" id="form-date" placeholder="Enter year" required>
+            <input class="form-control formInput" pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])" id="form-date" placeholder="Enter year" required>
             <div class="valid-feedback">
               Looks ok!
             </div>
             <div class="invalid-feedback">
-              Please enter a valid date. Format is YYYY/MM/DD.
+              Please enter a valid date. Format is YYYY-MM-DD.
             </div>
           </div>
           <div class="form-group">
