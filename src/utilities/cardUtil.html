@@ -90,14 +90,27 @@
     );
     __col.classList.add("col-lg-4", "d-flex");
     __card.classList.add("card", "h-100");
-    __cardImg.classList.add("card-img-top", "hover-zoom", "hover-shadow");
+    __cardImg.classList.add(
+      "card-img-top",
+      "hover-zoom",
+      "hover-shadow",
+      "container-fluid",
+      "mt-2",
+      "mx-2",
+      "p-0",
+    );
+    __cardImg.style["object-fit"] = "cover";
+    __cardImg.style["width"] = "20rem";
+    __cardImg.style["height"] = "20rem";
     __cardBody.classList.add("card-body", "d-flex", "flex-column");
-
     __btn.classList.add("btn", "btn-success", "cardCheckoutBtn");
+    __h3.classList.add("linkTitle");
     __h4.classList.add("mt-auto", "mb-3");
     // Modal Info
     __cardImg.setAttribute("data-bs-toggle", "modal");
     __cardImg.setAttribute("data-bs-target", "#infoModal");
+    __h3.setAttribute("data-bs-toggle", "modal");
+    __h3.setAttribute("data-bs-target", "#infoModal");
 
     var __placeholderImg = __cardImg.cloneNode(false);
     __placeholderImg.src =
@@ -141,6 +154,10 @@
         } else {
           cardImg.src = curr.img;
         }
+        h3Tag.addEventListener(
+          "click",
+          setInfoModalButtonListener(__rowSize * j + i),
+        );
         cardImg.addEventListener(
           "click",
           setInfoModalButtonListener(__rowSize * j + i),
@@ -183,6 +200,10 @@
         } else {
           cardImg.src = curr.img;
         }
+        h3Tag.addEventListener(
+          "click",
+          setInfoModalButtonListener(__rowSize * rowEnd.rowCount + i),
+        );
         cardImg.addEventListener(
           "click",
           setInfoModalButtonListener(__rowSize * rowEnd.rowCount + i),

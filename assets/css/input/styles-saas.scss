@@ -36,6 +36,16 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.linkTitle {
+  text-decoration: none;
+  color: #3232c7;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
 #shoppingCart.hover-zoom {
   &:hover {
     transition: all 100ms ease-in;
