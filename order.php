@@ -1,7 +1,8 @@
-<?php include_once 'src/utilities/header.php';
-include_once "./src/utilities/AJAXUtil.html";
-include_once "./src/utilities/basketUtil.html"
+<?php require_once 'src/utilities/header.php';
 ?>
+<script src="./src/utilities/AJAXUtil.js"></script>
+<script src="./src/utilities/basketUtil.js"></script>
+
 <div class="container-md mt-4 border rounded">
   <h3 style="margin-left:1rem;" class="mt-3 ml-3">Order items </h3>
 
@@ -49,8 +50,5 @@ include_once "./src/utilities/basketUtil.html"
     <button type="submit" form="orderForm" style="margin:0 0 0 0.5rem;" class="btn btn-primary">Send order</button>
   </div>
 </div>
-<?php
 
-include_once "./src/utilities/orderUtil.html";
-
-?>
+<script src="./src/utilities/orderUtil.js"></script>

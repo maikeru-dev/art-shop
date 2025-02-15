@@ -65,7 +65,8 @@
     </div>
   </div>
 </div>
-<?php include_once "./src/utilities/AJAXUtil.html";
-include_once "./src/utilities/basketUtil.html";
-include_once "./src/utilities/cardUtil.html"; ?>
+
+<script src="./src/utilities/AJAXUtil.js"></script>
+<script src="./src/utilities/basketUtil.js"></script>
+<script src="./src/utilities/cardUtil.js"></script>
 </html>
